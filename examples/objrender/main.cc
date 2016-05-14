@@ -1,4 +1,5 @@
 #include "tiny_obj_loader.h"
+#include "Configs.h"
 
 #define TINYEXR_IMPLEMENTATION
 #include "tinyexr.h"
@@ -194,19 +195,19 @@ struct Material {
   int alpha_texid;      // alpha map
 
   Material() {
-	  ambient[0] = 0.0;
-	  ambient[1] = 0.0;
-	  ambient[2] = 0.0;
-	  diffuse[0] = 0.5;
-	  diffuse[1] = 0.5;
-	  diffuse[2] = 0.5;
-	  reflection[0] = 0.0;
-	  reflection[1] = 0.0;
-	  reflection[2] = 0.0;
-	  refraction[0] = 0.0;
-	  refraction[1] = 0.0;
-	  refraction[2] = 0.0;
-	  id = -1;
+      ambient[0] = 0.0;
+      ambient[1] = 0.0;
+      ambient[2] = 0.0;
+      diffuse[0] = 0.5;
+      diffuse[1] = 0.5;
+      diffuse[2] = 0.5;
+      reflection[0] = 0.0;
+      reflection[1] = 0.0;
+      reflection[2] = 0.0;
+      refraction[0] = 0.0;
+      refraction[1] = 0.0;
+      refraction[2] = 0.0;
+      id = -1;
     diffuse_texid = -1;
     reflection_texid = -1;
     transparency_texid = -1;
@@ -517,7 +518,7 @@ int main(int argc, char** argv)
 
   float scale = 1.0f;
 
-  std::string objFilename = "cornellbox_suzanne.obj";
+  std::string objFilename = DATA_DIR "/cornellbox_suzanne.obj";
 
   if (argc > 1) {
     objFilename = std::string(argv[1]);
