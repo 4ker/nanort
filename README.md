@@ -1,5 +1,16 @@
 # NanoRT, single header only modern ray tracing kernel.
 
+```bash
+mkdir build && cd build
+cmake ..
+make
+```
+
+Works okay on Linux, but not windows.
+and the material loader is buggy.
+
+---
+
 [![Build Status](https://travis-ci.org/lighttransport/nanort.svg)](https://travis-ci.org/lighttransport/nanort)
 
 ![](images/render.png)
@@ -44,7 +55,7 @@
 
 `nanort::Ray` represents ray. The origin `org`, the direction `dir`(not necessarily normalized), the minimum hit distance `minT`(usually 0.0) and the maximum hit distance `maxT`(usually too far, e.g. 1.0e+30) must be filled before shooting ray.
 
-`nanort::Intersection` stores intersection information. 
+`nanort::Intersection` stores intersection information.
 
 `nanort::BVHAccel` builds BVH data structure from geometry, and provides the function to find intersection point for a given ray.
 
@@ -72,7 +83,7 @@ typedef struct {
 class BVHTraceOptions {
   // Trace rays only in face ids range. faceIdsRange[0] < faceIdsRange[1]
   // default: 0 to 0x3FFFFFFF(2G faces)
-  unsigned int faceIdsRange[2]; 
+  unsigned int faceIdsRange[2];
   bool cullBackFace; // default: false
 };
 
@@ -128,7 +139,7 @@ Application must prepare geometric information and store it in linear array.
     printf("    # of leaf   nodes: %d\n", stats.numLeafNodes);
     printf("    # of branch nodes: %d\n", stats.numBranchNodes);
     printf("  Max tree depth   : %d\n", stats.maxTreeDepth);
- 
+
     std::vector<float> rgb(width * height * 3, 0.0f);
 
     const float tFar = 1.0e+30f;
@@ -143,7 +154,7 @@ Application must prepare geometric information and store it in linear array.
 
         BVHTraceOptions traceOptions;
 
-        // Simple camera. change eye pos and direction fit to .obj model. 
+        // Simple camera. change eye pos and direction fit to .obj model.
 
         nanort::Ray ray;
         ray.minT = 0.0f;
@@ -201,7 +212,7 @@ PR are always welcome!
 * [ ] Scene graph support.
   * [ ] Instancing support.
 * [ ] Optimize Multi-hit ray traversal for BVH.
-  * [ ] http://jcgt.org/published/0004/04/04/ 
+  * [ ] http://jcgt.org/published/0004/04/04/
 * [ ] Ray traversal option.
   * [x] FaceID range.
   * [x] Double sided on/off.
